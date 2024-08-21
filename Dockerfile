@@ -21,6 +21,8 @@ RUN bundle install
 
 RUN rails webpacker:install
 
+RUN rake db:migrate
+
 RUN echo ''
 RUN echo 'NOTE:'
 RUN echo 'Use `rails s -b 0.0.0.0` to run the application'
