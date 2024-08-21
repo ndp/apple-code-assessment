@@ -1,0 +1,12 @@
+<h1>Weather#index</h1>
+<p>Find me in app/views/weather/index.html.erb</p>
+
+
+<h1>Fancy Weather App</h1>
+
+<p>Enter an address and feel the weather:</p>
+
+<%= form_tag(weather_show_path, method: :get) do %>
+  <%= text_field_tag :address, params[:address] %>
+  <%= submit_tag "Brrr..." %>
+<% end %>
