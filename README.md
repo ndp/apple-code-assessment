@@ -1,11 +1,19 @@
 ## Local Development
 
-- All default Rails commands work as expected.
-- To get started,
+To set things up:
+
+1. Get the normal Rails stuff up and going. All default Rails commands work as expected, but in particular, these commands are relevant:
    ```bash
     $ bundle install
     $ rails webpacker:install
-  ```
+    $ rake db:migrate
+   ```
+   The database and webpack are not used (yet), but it is much easier to include them now rather than later. (I usually don't take this approach, but in Rails it's easier).
+2. You'll need to go to [Visual Crossing](https://www.visualcrossing.com/weather-api) and sign up for a free account to get an API key. Then you'll need to set an environmental variable with your API key, using the name `VISUAL_CROSSING_API_KEY`. The `dotenv` gem is configured if you'd like to use that (but it's not required).
+
+3. To run, you'll use `rails s` as usual. 
+
+4. All default Rails command should work, like `rails test`.
 
 ### With Docker
 (Optional) Use `./dev.sh` to get into a development terminal without having to futz around with Ruby versions and gemsets. This puts you into a shell in a VM where you do all the normal Rails stuff: `bundle`, `rails start`, etc. 
@@ -14,10 +22,7 @@ So that the app will be accessible locally, use `rails s -b 0.0.0.0` to run from
 
 Note: It provides a clean environment if you exit and re-enter with `./dev.sh`. 
 
-* Configuration
-* Database creation
-* Database initialization
-* How to run the test suite
+## Configuration
 
 
 Requirements:
@@ -31,7 +36,7 @@ Display indicator if result is pulled from cache.
 Assumptions:
   - [ ] This project is open to interpretation
   - [ ] Functionality is a priority over form
-  - [ ] If you get stuck, complete as much as you can
+  - [x] If you get stuck, complete as much as you can
 Submission:
   - [ ] Use a public source code repository (GitHub, etc) to store your code
   - [ ] Send us the link to your completed code
@@ -39,19 +44,22 @@ Reminders:
 Please remember it’s not just whether or not the code works that they will be focused on
 seeing it’s all the rest of what goes into good Senior Software Engineering daily practices
 for Enterprise Production Level Code – such as specifically:
-  - [ ] Unit Tests (#1 on the list of things people forget to include – so please remember, treat
+  - [x] Unit Tests (#1 on the list of things people forget to include – so please remember, treat
 this as if it were true production level code, do not treat it just as an exercise),
-  - [ ] Detailed Comments/Documentation within the code, also have a README file
-  - [ ] Include *Decomposition* of the Objects in the Documentation
-  - [ ] Design Patterns (if/where applicable)
-  - [ ] Scalability Considerations (if applicable)
-  - [ ] Naming Conventions (name things as you would name them in enterprise-scale
+  - [x] Detailed Comments/Documentation within the code, also have a README file
+  - [x] Include *Decomposition* of the Objects in the Documentation
+  - [x] Design Patterns (if/where applicable)
+  - [x] Scalability Considerations (if applicable)
+  - [x] Naming Conventions (name things as you would name them in enterprise-scale
 production code environments)
-  - [ ] Encapsulation, (don’t have 1 Method doing 55 things)
-  - [ ] Code Re-Use, (don’t over-engineer the solution, but don’t under-engineer it either)
-  - [ ] and any other industry Best Practices.
-  - [ ] Remember to Include the UI ***
-  - [ ] No not use ChatGPT/AI
-
+  - [x] Encapsulation, (don’t have 1 Method doing 55 things)
+  - [x] Code Re-Use, (don’t over-engineer the solution, but don’t under-engineer it either)
+  - [x] and any other industry Best Practices.
+  - [x] Remember to Include the UI ***
+  - [x] No not use ChatGPT/AI
+Lots of stuff not done that would be needed for a production app:
+  - [ ] Rate-limit / ddos protection
+  - [ ] Traceability/logging
+  - [ ] Deployment configuration
 
 

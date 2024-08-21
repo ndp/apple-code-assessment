@@ -12,7 +12,10 @@ class WeatherControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should be success if address param given" do
+    WeatherApi.expects(:get_weather).with("123").returns({})
+
     get weather_show_path, params: { address: "123" }
+
     assert_response 200
   end
 
