@@ -25,9 +25,14 @@ Note: It provides a clean environment if you exit and re-enter with `./dev.sh`.
 ## Configuration
 
 
+## Notes
+
+The `/model` tests should be relocated, but I didn't want to "overengineer" it... there's good conversations about (1) where non-DB models go (2) where services, like the weather api client go. A discussion should be had.
+
+
 Requirements:
   - [x] Must be done in Ruby on Rails
-  - [ ] Accept an address as input
+  - [ ] Accept an (street) address as input
   - [ ] Retrieve forecast data for the given address. This should include, at minimum, the
 current temperature (Bonus points - Retrieve high/low and/or extended forecast)
   - [ ] Display the requested forecast details to the user

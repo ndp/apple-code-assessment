@@ -4,9 +4,9 @@
 
 <h1>Fancy Weather App</h1>
 
-<p>Enter an address and feel the weather:</p>
+<p>Enter an address and we'll look up the weather:</p>
 
 <%= form_tag(weather_show_path, method: :get) do %>
-  <%= text_field_tag :address, params[:address] %>
+  <%= text_field_tag :street_address, params[:street_address] %>
   <%= submit_tag "Brrr..." %>
 <% end %>

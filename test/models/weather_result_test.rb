@@ -12,6 +12,21 @@ class WeatherResultTest < ActiveSupport::TestCase
     assert_equal 0, result.snowdepth
   end
 
+  test "is not cached by default" do
+    result = WeatherResult.new(EXAMPLE_RESULT)
+    assert_not result.cached?
+  end
+
+  test "is tagged as cached if option is passed" do
+    result = WeatherResult.new(EXAMPLE_RESULT, cached: true)
+    assert result.cached?
+  end
+
+  test "can be tagged as error" do
+    result = WeatherResult.new('{}', error: true)
+    assert result.error?
+  end
+
 end
 
 
@@ -21,7 +36,7 @@ EXAMPLE_RESULT = <<END
  "latitude": 37.74247,
  "longitude": -122.42958,
  "resolvedAddress": "333 Day St, San Francisco, CA 94131, United States",
- "address": "333 Day, san francisco, ca",
+ "address": "331 Day, san francisco, ca",
  "timezone": "America/Los_Angeles",
  "tzoffset": -7,
  "description": "Similar temperatures continuing with no rain expected.",

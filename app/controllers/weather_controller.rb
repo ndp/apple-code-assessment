@@ -3,10 +3,10 @@ class WeatherController < ApplicationController
   end
 
   def show
-    if params[:address].blank?
+    if params[:street_address].blank?
       render status: :bad_request
     else
-      @weather = WeatherApi.get_weather(params[:address])
+      @weather = WeatherApi.get_weather(params[:street_address])
       render status: :ok
     end
   end
