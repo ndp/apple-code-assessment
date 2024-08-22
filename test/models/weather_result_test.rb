@@ -7,9 +7,24 @@ class WeatherResultTest < ActiveSupport::TestCase
     assert_equal 60, result.temperature
   end
 
+  test "returns '?' the current temperature if an error" do
+    result = WeatherResult.new(EXAMPLE_RESULT, error: true)
+    assert_equal '?', result.temperature
+  end
+
   test "returns the current snow depth" do
     result = WeatherResult.new(EXAMPLE_RESULT)
     assert_equal 0, result.snowdepth
+  end
+
+  test "returns '?' the current snow depth if an error" do
+    result = WeatherResult.new(EXAMPLE_RESULT, error: true)
+    assert_equal '?', result.snowdepth
+  end
+
+  test "returns the street address" do
+    result = WeatherResult.new(EXAMPLE_RESULT)
+    assert_equal "336 Bay St, San Francisco, CA 94131, United States", result.street_address
   end
 
   test "is not cached by default" do
@@ -27,6 +42,11 @@ class WeatherResultTest < ActiveSupport::TestCase
     assert result.error?
   end
 
+  test "sets to error if no data" do
+    result = WeatherResult.new('{}')
+    assert result.error?
+  end
+
 end
 
 
@@ -35,8 +55,8 @@ EXAMPLE_RESULT = <<END
  "queryCost": 1,
  "latitude": 37.74247,
  "longitude": -122.42958,
- "resolvedAddress": "333 Day St, San Francisco, CA 94131, United States",
- "address": "331 Day, san francisco, ca",
+ "resolvedAddress": "336 Bay St, San Francisco, CA 94131, United States",
+ "address": "331 Bay, san francisco, ca",
  "timezone": "America/Los_Angeles",
  "tzoffset": -7,
  "description": "Similar temperatures continuing with no rain expected.",

@@ -3,9 +3,9 @@ require 'net/http'
 
 class WeatherApi
   def self.get_weather(street_address)
-
-    if Rails.cache.read(street_address)
-      return WeatherResult.new(Rails.cache.read(street_address), { cached: true })
+    cache_key = cache_key(street_address)
+    if Rails.cache.read(cache_key)
+      return WeatherResult.new(Rails.cache.read(cache_key), { cached: true })
     end
 
     url = URI("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/" +
@@ -27,7 +27,15 @@ class WeatherApi
     end
 
     body = response.read_body
-    Rails.cache.write(street_address, body, expires_in: 30.minutes)
+    Rails.cache.write(cache_key, body, expires_in: 30.minutes)
     return WeatherResult.new(body)
+  end
+
+
+  # Placeholder for a more sophisticated cache key based on the domain logic.
+  # Perhaps removing stop words and and more punctuation.
+  def self.cache_key(s)
+    return 'no-address' if s.blank?
+    s.gsub(/[\s,\.]+/, "").downcase
   end
 end

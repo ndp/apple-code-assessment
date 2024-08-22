@@ -21,7 +21,7 @@ RUN bundle install
 
 RUN rails webpacker:install
 
-RUN rake db:migrate
+RUN rails db:migrate
 
 RUN echo ''
 RUN echo 'NOTE:'

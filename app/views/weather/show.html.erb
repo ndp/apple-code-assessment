@@ -1,3 +1,15 @@
 <h1>Weather#show</h1>
-<p>Find me in app/views/weather/show.html.erb</p>
 
+<% if @weather.error? %>
+  Unable to find weather for <%= @weather.street_address %>
+<% end %>
+<ul>
+  <li>Address: <%= @weather.street_address %></li>
+  <li>Temperature: <%= @weather.temperature %></li>
+  <li>Snow Depth: <%= @weather.snowdepth %></li>
+  <% if @weather.cached? %>
+    <li>(Weather data was cached)</li>
+  <% end %>
+</ul>
+
+<%= link_to "Back for Another", weather_index_path %>

@@ -1,12 +1,8 @@
 <h1>Weather#index</h1>
-<p>Find me in app/views/weather/index.html.erb</p>
-
-
-<h1>Fancy Weather App</h1>
 
 <p>Enter an address and we'll look up the weather:</p>
 
 <%= form_tag(weather_show_path, method: :get) do %>
-  <%= text_field_tag :street_address, params[:street_address] %>
-  <%= submit_tag "Brrr..." %>
+  <%= text_field_tag :street_address, params[:street_address], size: 80 %>
+  <%= submit_tag "Look Up Weather" %>
 <% end %>

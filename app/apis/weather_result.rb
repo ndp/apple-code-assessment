@@ -2,7 +2,7 @@ class WeatherResult
   def initialize(json, options = {})
     @json = JSON.parse(json)
     @cached = options[:cached] || false
-    @error = options[:error] || false
+    @error = options[:error] || @json["currentConditions"].blank? || false
   end
 
   def cached?
@@ -13,13 +13,16 @@ class WeatherResult
     @error
   end
 
+  def street_address
+    @json["resolvedAddress"]
+  end
 
   def temperature
-    @json["currentConditions"]["temp"]
+    @error ? '?' : @json["currentConditions"]["temp"]
   end
 
   def snowdepth
-    @json["currentConditions"]["snowdepth"]
+    @error ? '?' : @json["currentConditions"]["snowdepth"]
   end
 
   # etc.
