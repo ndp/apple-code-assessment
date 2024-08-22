@@ -1,3 +1,6 @@
+# Encapsulates the results of an API call to the Visual Crossing Weather API.
+# Shows the rudiments of how data would be accessed, but obviously more
+# methods and data could be added.
 class WeatherResult
   def initialize(json, options = {})
     @json = JSON.parse(json)

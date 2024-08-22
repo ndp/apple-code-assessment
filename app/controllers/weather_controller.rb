@@ -3,7 +3,10 @@ class WeatherController < ApplicationController
   end
 
   def show
+
     @weather = WeatherApi.get_weather(params[:street_address])
-      render status: (@weather.error? ? :bad_request : :ok)
+
+    render status: (@weather.error? ? :bad_request : :ok)
+
   end
 end

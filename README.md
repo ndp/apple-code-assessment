@@ -22,25 +22,40 @@ So that the app will be accessible locally, use `rails s -b 0.0.0.0` to run from
 
 Note: It provides a clean environment if you exit and re-enter with `./dev.sh`. 
 
-## Configuration
-
 
 ## Notes
 
-The `/model` tests should be relocated, but I didn't want to "overengineer" it... there's good conversations about (1) where non-DB models go (2) where services, like the weather api client go. A discussion should be had.
+There's a request to "Include the UI", which I'm not sure what that means. I've included the simplest forms imaginable to get the job done. I have lots of "UI" code, if you're interested. Just one example, [Amp What](https://www.amp-what.com/) is all my code. I'm happy to walk through various projects and share code.
+
+I TDDed all the code. There could be a happy-path integration test, but as the UI is pretty likely to change if this project is picked up, that seems premature.
+
+For the "industry best practices", I've tried to stick to the Rails conventions as much as possible. Obviously there are other directions to go. I'm unsure about where to put the service code for the weather API. Maybe Rails now has a good place for this (I'm not 100% up to date), but it's hanging out in a `api` directory, and the tests are orphaned in the model directory. Perhaps the `/model` tests should be relocated, but I didn't want to "overengineer", or fight with Rails conventions too much... there's good conversations about (1) where non-DB model (WeatherResult) should be located (2) where services, like the weather api client go. A discussion should be had.
+
+The code is not caching by "zip codes", but rather, just a compressed form of the address. The user input and backing API do not require a zip code, and accepts things like 'New York' or "Anchorage' and still gives valid results. I've tried to at least allude to the need for a good cache key with the architecture. If you refresh the page a lot, it pulls the result from the cache, which I think is what you want to see.
+
+If zip code caching is a hard requirement, a separate API call, to a different service, would need to be used to resolve the address to a zip code, and then a call to the weather API with the zip code. I'd want to think over whether this would be better for the user, but on first blush it doesn't seem so. 
+
+I've included minimal scalability considerations. It seems unlikely this project will receive a lot of traffic (as it's just a little test project), so it seems properly engineered. One the high-volume sites I've worked on, the code changes quite a bit, and the standard Rails conventions are not always followed. I'm not sure what you're really looking for, but happy to discuss some of the trickier issues I've dealt with with high-volume, consumer-facing sites.
+
+To send this into production, you'd need need these things at first:
+- [ ] Rate-limit / ddos protection (mostly just adding a gem)
+- [ ] CI
+- [ ] Deployment configuration
+- [ ] Monitoring/traceability/logging
 
 
-Requirements:
+## Requirements
+
   - [x] Must be done in Ruby on Rails
-  - [ ] Accept an (street) address as input
-  - [ ] Retrieve forecast data for the given address. This should include, at minimum, the
+  - [x] Accept an (street) address as input
+  - [x] Retrieve forecast data for the given address. This should include, at minimum, the
 current temperature (Bonus points - Retrieve high/low and/or extended forecast)
-  - [ ] Display the requested forecast details to the user
+  - [x] Display the requested forecast details to the user
   - [ ] Cache the forecast details for 30 minutes for all subsequent requests by zip codes.
-Display indicator if result is pulled from cache.
+  - [x] Display indicator if result is pulled from cache.
 Assumptions:
-  - [ ] This project is open to interpretation
-  - [ ] Functionality is a priority over form
+  - [x] This project is open to interpretation
+  - [x] Functionality is a priority over form
   - [x] If you get stuck, complete as much as you can
 Submission:
   - [ ] Use a public source code repository (GitHub, etc) to store your code
@@ -62,9 +77,5 @@ production code environments)
   - [x] and any other industry Best Practices.
   - [x] Remember to Include the UI ***
   - [x] No not use ChatGPT/AI
-Lots of stuff not done that would be needed for a production app:
-  - [ ] Rate-limit / ddos protection
-  - [ ] Traceability/logging
-  - [ ] Deployment configuration
 
 

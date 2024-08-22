@@ -1,6 +1,12 @@
 require 'uri'
 require 'net/http'
 
+# Wrapper around the Visual Crossing Weather API.
+# This class is responsible for making the HTTP request to the API,
+# and uses the `WeatherResult` class to parse the response.
+#
+# A simple caching mechanism is implemented, with results cached
+# for half and hour, and visible to the user.
 class WeatherApi
   def self.get_weather(street_address)
     cache_key = cache_key(street_address)
