@@ -1,3 +1,5 @@
+Copyright (c) 2024 Andrew J. Peterson. All Rights Reserved.
+
 ## Local Development
 
 To set things up:
@@ -44,7 +46,7 @@ To send this into production, you'd need need these things at first:
 - [ ] Monitoring/traceability/logging
 
 
-## Requirements
+## Requirements (from the brief)
 
   - [x] Must be done in Ruby on Rails
   - [x] Accept an (street) address as input
@@ -58,7 +60,7 @@ Assumptions:
   - [x] Functionality is a priority over form
   - [x] If you get stuck, complete as much as you can
 Submission:
-  - [ ] Use a public source code repository (GitHub, etc) to store your code
+  - [x] Use a public source code repository (GitHub, etc) to store your code
   - [ ] Send us the link to your completed code
 Reminders:
 Please remember it’s not just whether or not the code works that they will be focused on
